@@ -17,8 +17,6 @@ export const config = {
 export default async function middleware(req: NextRequest) {
   const url = req.nextUrl;
 
-  console.log("hello", url, req.headers.get("host"));
-
   // Get hostname of request (e.g. demo.vercel.pub, demo.localhost:3000)
   const hostname = req.headers
     .get("host")!
