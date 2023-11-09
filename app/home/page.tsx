@@ -1,7 +1,12 @@
 import { InlineSnippet } from "@/components/form/domain-configuration";
+import { authOptions } from "@/lib/auth";
+import { Link } from "lucide-react";
+import { getServerSession } from "next-auth";
 import Image from "next/image";
 
-export default function HomePage() {
+export default async function HomePage() {
+  const session = await getServerSession(authOptions);
+  console.log(session);
   return (
     <div className="flex h-screen flex-col items-center justify-center space-y-10 bg-black">
       <Image

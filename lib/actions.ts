@@ -141,6 +141,7 @@ export const updateSite = withSiteAuth(
           */
         }
       } else if (key === "image" || key === "logo") {
+        console.log(process.env.BLOB_READ_WRITE_TOKEN);
         if (!process.env.BLOB_READ_WRITE_TOKEN) {
           return {
             error:

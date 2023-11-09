@@ -7,6 +7,10 @@ import BlogCard from "@/components/blog-card";
 import { getPostsForSite, getSiteData } from "@/lib/fetchers";
 import Image from "next/image";
 
+// Check Auth
+import { getServerSession } from "next-auth/next";
+import { authOptions } from "@/lib/auth";
+
 export async function generateStaticParams() {
   const allSites = await prisma.site.findMany({
     select: {
@@ -38,6 +42,7 @@ export default async function SiteHomePage({
 }: {
   params: { domain: string };
 }) {
+  const session = await getServerSession(authOptions);
   const domain = decodeURIComponent(params.domain);
   const [data, posts] = await Promise.all([
     getSiteData(domain),
